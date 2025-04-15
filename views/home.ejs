@@ -8,20 +8,25 @@
 </head>
 <body>
     <%- include("./partials/nav") %>
-    <div class="row row-cols-3 mt-3">
+
+    <div class="container mt-3">
+    <div class="row row-cols-4">
         <% blogs.forEach(blog => { %>
-            <div class="col"></div>
-            <div class="card col" style="width: 18rem;">
-                <img src="<%=blog.coverImageURL%>" class="card-img-top" alt="...">
-                <img src="uploads/1733824461164 - Screenshot (2).png" alt="oops">
+        
+            <div class="col">
+            <div class="card col " style="width: 18rem">
+                <img src="<%=blog.coverImageURL%>" class="card-img" >
+            
                 <div class="card-body">
                   <h5 class="card-title"><%= blog.title %></h5>
                   
-                  <a href="blog/<%= blog._id %>" class="btn btn-primary">view</a>
+                  <a href="/blog/<%= blog._id %>" class="btn btn-primary">view</a>
                 </div>
             </div>
         </div>
+
         <% }) %>
+    </div>
     </div>
     <%- include("./partials/scripts") %>
 </body>

@@ -8,12 +8,9 @@ import Blog from "../models/blog.js";
 const router = express.Router();
 
 router.use(express.static(path.resolve("./public")))
-console.log(path.resolve("./public"))
-// const app = express()
-console.log(path.resolve("./public"))
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.resolve("./public/uploads"))
+      cb(null, path.resolve("./public"))
     },
     filename: function (req, file, cb) {
       const fileName = `${Date.now()} - ${file.originalname}`;
@@ -34,11 +31,11 @@ const storage = multer.diskStorage({
 })
 
 router.get("/:id", async (req,res)=>{
-  const oneBlog = await Blog.findById(req.params.id);
+  const blog = await Blog.findById(req.params.id).populate("createdBy");
   //console.log(oneBlog);
-  return res.render("blogPage", {
+  return res.render("blog", {
       user: req.user,
-      blogOne: oneBlog,
+      blog,
     })
   })
 
